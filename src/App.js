@@ -1,24 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-
+// import UserCard from "./components/userlist/UserCard";
+import UserDetailCard from "./components/UserDetailCard/UserDetailCard";
+import UserList from "./components/Userlist/UserList";
+import Container from "./container/Container";
+import AppStyle from "./styled/App.style.js";
+import { useSelector } from "react-redux";
 function App() {
+  const user = useSelector(state => state.card.user)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppStyle>
+      <Container>
+        <UserList />
+      </Container>
+      {user && <UserDetailCard email={user.email} name={user.name} avatar={user.avatar}/>}
+    </AppStyle>
   );
 }
 
